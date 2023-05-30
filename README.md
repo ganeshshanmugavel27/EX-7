@@ -1,53 +1,42 @@
-# IMPLEMENTATION OF PING COMMAND
+# IMPLEMENTATION OF TRACEROUTE COMMAND
 
-# EXP: 6
-# DATE:12-04-2023
-# AIM:
-## To write the python program for simulating ping command.
-# ALGORITHM:
-## Step 1: start the program.
-## Step 2: Include necessary package in java.
-## Step 3: To create a process object p to implement the ping command.
-## Step 4: declare one Buffered Reader stream class object.
-## Step 5: Get the details of the server
-   ## 5:1: length of the IP address.
-   ## 5:2: time required to get the details.
-   ## 5:3: send packets, receive packets and lost packets.
-   ## 5.4: minimum, maximum and average times.
-## Step 6: print the results.
-## Step 7: Stop the program.
-# PROGRAM:
-# CLIENT:
-```python3
-import socket
-from pythonping import ping
-s=socket.socket()
-s.bind(('localhost'8000))
-s.listen(5)
-c,addr=s.accept()
-while True:
-   hostname=c.recv(1024).decode()
-try:
-   c.send(str(ping(hostname, verbose=False)).encode())
-except KeyError:
-   c.send("Not Found".encode())
-```
-# SERVER:
-```python3
-import socket
-s=socket.socket()
-s.connect(('localhost',8000))
-while True:
-   ip=input("Enter the website you want to ping ")
-   s.send(ip.encode())
-   print(s.recv(1024).decode())
+# EXP: 7
+
+# DATE:19-04-2023
+
+# AIM :
+## To write the python program for simulating Traceroute command
+
+
+# ALGORITHM :
+## 1. Start the program.
+## 2. Get the frame size from the user.
+## 3. To create the frame based on the user request.
+## 4. To send frames to server from the client side.
+## 5. If your frames reach the server, it will send ACK signal to client
+otherwise it will sendNACK signal to client.
+## 6. Stop the program
+
+# PROGRAM :
+```PYTHON 3 
+
+from scapy.all import *
+
+target = ["www.google.com"]
+result, unans = traceroute(target, maxttl=32)
+print(result, unans)
+
+
 ```
 
-# SERVER OUTPUT :
-![S5](https://github.com/ARUNKUMART9968/EX-6/assets/121215794/cca7306e-22cf-4153-b9e5-16ec3d82d3ee)
-# CLIENT OUTPUT :
-![C5](https://github.com/ARUNKUMART9968/EX-6/assets/121215794/9bae6d82-7d0e-49a1-a327-899006f5f19b)
 
 
-# RESULT:
-Thus, the python program for simulating ping command was successfully executed.
+# OUTPUT :
+#![7 th](https://github.com/ARUNKUMART9968/EX-7/assets/121215794/0f92b699-a4b9-4879-ab57-61691cae3eb0)
+
+
+
+
+
+# RESULT :
+## Thus, the python program for simulating Traceroute command was successfully executed.
